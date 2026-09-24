@@ -1,0 +1,34 @@
+{
+  "sources": [
+    {
+      "title": "Information Technology Act, 2000 (india.gov.in)",
+      "source_url": "https://www.india.gov.in/information-technology-act-2000-2",
+      "category": "act"
+    },
+    {
+      "title": "National Cyber Crime Reporting Portal (NCRP)",
+      "source_url": "https://cybercrime.gov.in",
+      "category": "portal_faq"
+    },
+    {
+      "title": "BNS 2023 cyber-relevant sections (TODO)",
+      "source_url": "TODO_FIND_OFFICIAL_URL",
+      "category": "act"
+    },
+    {
+      "title": "DPDP Act 2023 (TODO)",
+      "source_url": "TODO_FIND_OFFICIAL_URL",
+      "category": "act"
+    },
+    {
+      "title": "CERT-In advisories (TODO)",
+      "source_url": "TODO_FIND_OFFICIAL_URL",
+      "category": "advisory"
+    },
+    {
+      "title": "RBI cyber fraud advisories (TODO)",
+      "source_url": "TODO_FIND_OFFICIAL_URL",
+      "category": "advisory"
+    }
+  ]
+} 
