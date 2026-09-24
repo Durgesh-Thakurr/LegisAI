@@ -1,22 +1,22 @@
 {
   "_comment": "Only .gov.in / official-domain sources. Run verify_sources.py before ingesting.",
   "sources": [
+   {
+  "title": "Information Technology Act, 2000 (cag.gov.in, official Act PDF)",
+  "source_url": "https://cag.gov.in/uploads/media/IT-ACT-20210330163049.pdf",
+  "category": "act"
+},
     {
-      "title": "Information Technology Act, 2000 (meity.gov.in)",
-      "source_url": "https://www.meity.gov.in/content/information-technology-act-2000-0",
-      "category": "act"
-    },
-    {
-      "title": "National Cyber Crime Reporting Portal (NCRP)",
-      "source_url": "https://cybercrime.gov.in",
+      "title": "National Cyber Crime Reporting Portal -- Service Description (india.gov.in)",
+      "source_url": "https://services.india.gov.in/service/detail/national-cyber-crime-reporting-portal",
       "category": "portal_faq"
     },
-   {
-  "title": "Bharatiya Nyaya Sanhita, 2023 (ncrb.gov.in, official Bare Act PDF)",
-  "source_url": "https://www.ncrb.gov.in/uploads/SankalanPortal/DownloadPDF/BNS2023.pdf",
-  "category": "act",
-  "notes": "Cyber-relevant sections include 75, 77, 78, 79 (offences against women online), 111-112 (organised/cyber-enabled crime chains). Chunk with section boundaries preserved."
-},
+    {
+      "title": "Bharatiya Nyaya Sanhita, 2023 (ncrb.gov.in, official Bare Act PDF)",
+      "source_url": "https://www.ncrb.gov.in/uploads/SankalanPortal/DownloadPDF/BNS2023.pdf",
+      "category": "act",
+      "notes": "Cyber-relevant sections include 75, 77, 78, 79 (offences against women online), 111-112 (organised/cyber-enabled crime chains). Chunk with section boundaries preserved."
+    },
     {
       "title": "Digital Personal Data Protection Act, 2023 (meity.gov.in, official Gazette PDF)",
       "source_url": "https://www.meity.gov.in/static/uploads/2024/06/2bf1f0e9f04e6fb4f8fef35e82c42aa5.pdf",

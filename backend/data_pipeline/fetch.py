@@ -18,6 +18,8 @@ APPROVED_DOMAINS = {
     "rbi.org.in", "www.rbi.org.in",
     "mha.gov.in", "www.mha.gov.in",
     "ncrb.gov.in", "www.ncrb.gov.in",
+    "services.india.gov.in",
+    "cag.gov.in", "www.cag.gov.in", 
 }
 
 HEADERS = {
