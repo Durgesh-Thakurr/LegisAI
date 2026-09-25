@@ -4,3 +4,5 @@ PyMuPDF
 spacy
 python-dotenv
 tqdm 
+sentence-transformers
+psycopg2-binary
