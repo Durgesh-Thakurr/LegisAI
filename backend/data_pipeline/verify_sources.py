@@ -20,6 +20,7 @@ APPROVED_DOMAINS = {
     "ncrb.gov.in", "www.ncrb.gov.in", 
     "services.india.gov.in", 
     "cag.gov.in", "www.cag.gov.in",
+    "police.py.gov.in",
 }
 
 HEADERS = {
