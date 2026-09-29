@@ -4,6 +4,7 @@ import google.generativeai as genai
 import psycopg2
 from dotenv import load_dotenv
 from fastapi import FastAPI
+from groq import Groq
 from langdetect import detect
 from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
@@ -11,12 +12,14 @@ from sentence_transformers import SentenceTransformer
 load_dotenv()
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 DATABASE_URL = os.environ.get("DATABASE_URL")
 SIMILARITY_THRESHOLD = 0.45
 TOP_K = 5
 
 genai.configure(api_key=GEMINI_API_KEY)
 gemini_model = genai.GenerativeModel("gemini-3.6-flash")
+groq_client = Groq(api_key=GROQ_API_KEY)
 
 embed_model = SentenceTransformer("BAAI/bge-m3")
 
@@ -51,6 +54,7 @@ class ChatResponse(BaseModel):
     answer: str
     sources: list[Source]
     confidence: str
+    model_used: str
 
 
 def get_connection():
@@ -101,6 +105,23 @@ def build_context(chunks):
     )
 
 
+def generate_with_fallback(prompt: str):
+    try:
+        response = gemini_model.generate_content(prompt)
+        return response.text, "gemini"
+    except Exception as gemini_error:
+        print(f"Gemini failed, falling back to Groq: {gemini_error}")
+        try:
+            response = groq_client.chat.completions.create(
+               model="openai/gpt-oss-120b",
+                messages=[{"role": "user", "content": prompt}],
+            )
+            return response.choices[0].message.content, "groq"
+        except Exception as groq_error:
+            print(f"Groq also failed: {groq_error}")
+            raise
+
+
 @app.get("/health")
 def health():
     return {"status": "ok"}
@@ -115,14 +136,14 @@ def chat(req: ChatRequest):
             answer="I don't have verified information on this -- please consult the official source or a legal professional.",
             sources=[],
             confidence="low",
+            model_used="none",
         )
 
     language = detect_language(req.message)
     context = build_context(chunks)
     prompt = SYSTEM_PROMPT.format(language=language, context=context, question=req.message)
 
-    response = gemini_model.generate_content(prompt)
-    answer = response.text
+    answer, model_used = generate_with_fallback(prompt)
 
     seen_urls = set()
     sources = []
@@ -133,4 +154,4 @@ def chat(req: ChatRequest):
 
     confidence = "high" if chunks[0]["similarity"] >= 0.6 else "low"
 
-    return ChatResponse(answer=answer, sources=sources, confidence=confidence) 
+    return ChatResponse(answer=answer, sources=sources, confidence=confidence, model_used=model_used) 

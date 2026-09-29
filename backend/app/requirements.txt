@@ -5,3 +5,4 @@ python-dotenv
 sentence-transformers
 google-generativeai
 langdetect 
+groq

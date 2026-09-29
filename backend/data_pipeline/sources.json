@@ -34,6 +34,11 @@
       "source_url": "https://rbi.org.in/scripts/NotificationUser.aspx?Id=11040&Mode=0",
       "category": "advisory",
       "notes": "Core RBI circular on liability/refund rules for unauthorised digital transactions (UPI/card fraud). Also check rbi.org.in Notifications section periodically for newer circulars."
-    }
+    },
+{
+  "title": "Cyber Crime Categories & Definitions (cybercrime.gov.in official)",
+  "source_url": "https://cybercrime.gov.in/Webform/CrimeCatDes.aspx",
+  "category": "crime_type_explainer"
+}
   ]
 } 
