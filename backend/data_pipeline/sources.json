@@ -24,12 +24,6 @@
       "notes": "Phased commencement -- check meity.gov.in/content/digital-personal-data-protection-act-2023 for current commencement status before citing as fully in force."
     },
     {
-      "title": "CERT-In Advisories (listing page, needs crawler)",
-      "source_url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADVLIST",
-      "category": "advisory",
-      "notes": "This is a listing page of technical vulnerability advisories, not victim-facing cybercrime guidance. Low priority for RAG -- kept for completeness."
-    },
-    {
       "title": "RBI -- Customer Protection: Limiting Liability in Unauthorised Electronic Banking Transactions",
       "source_url": "https://rbi.org.in/scripts/NotificationUser.aspx?Id=11040&Mode=0",
       "category": "advisory",

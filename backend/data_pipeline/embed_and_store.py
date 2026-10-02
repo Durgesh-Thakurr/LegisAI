@@ -1,74 +1,79 @@
 import json
 import os
-from pathlib import Path
+import sys
 
 import psycopg2
 from dotenv import load_dotenv
+from psycopg2.extras import execute_values
 from sentence_transformers import SentenceTransformer
 from tqdm import tqdm
 
-load_dotenv()
+from common import BASE_DIR, CHUNKS_FILE
 
-CHUNKS_FILE = Path("chunks.json")
+load_dotenv(BASE_DIR / ".env")
+
 MODEL_NAME = "BAAI/bge-m3"
 BATCH_SIZE = 16
+EMBEDDING_DIM = 1024
 
-
-def load_chunks():
-    with open(CHUNKS_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def get_connection():
-    url = os.environ.get("DATABASE_URL")
-    if not url:
-        raise RuntimeError("DATABASE_URL not set -- check your .env file")
-    return psycopg2.connect(url)
+INSERT_SQL = """
+    INSERT INTO chunks (content, source_url, title, category, section, embedding)
+    VALUES %s
+"""
+INSERT_TEMPLATE = "(%s, %s, %s, %s, %s, %s::vector)"
 
 
 def vector_literal(embedding):
     return "[" + ",".join(f"{x:.8f}" for x in embedding) + "]"
 
 
-def main():
-    chunks = load_chunks()
-    print(f"Loaded {len(chunks)} chunks")
+def load_chunks():
+    with open(CHUNKS_FILE, "r", encoding="utf-8") as f:
+        return [chunk for chunk in json.load(f) if chunk.get("content", "").strip()]
 
-    print(f"Loading embedding model: {MODEL_NAME} (first run downloads ~2GB)")
+
+def embed(texts):
     model = SentenceTransformer(MODEL_NAME)
+    embeddings = []
+    for start in tqdm(range(0, len(texts), BATCH_SIZE), desc="Embedding"):
+        embeddings.extend(model.encode(texts[start:start + BATCH_SIZE], normalize_embeddings=True))
+    return embeddings
 
-    conn = get_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT COUNT(*) FROM chunks")
-    existing = cur.fetchone()[0]
-    if existing > 0:
-        print(f"Table already has {existing} rows. Clearing before re-inserting.")
-        cur.execute("TRUNCATE TABLE chunks RESTART IDENTITY")
-        conn.commit()
 
-    insert_query = """
-        INSERT INTO chunks (content, source_url, title, category, embedding)
-        VALUES (%s, %s, %s, %s, %s::vector)
-    """
+def main():
+    database_url = os.environ.get("DATABASE_URL")
+    if not database_url:
+        sys.exit("DATABASE_URL is not set")
 
-    for i in tqdm(range(0, len(chunks), BATCH_SIZE), desc="Embedding + inserting"):
-        batch = chunks[i:i + BATCH_SIZE]
-        texts = [c["content"] for c in batch]
-        embeddings = model.encode(texts, normalize_embeddings=True)
+    chunks = load_chunks()
+    if not chunks:
+        sys.exit("chunks.json has no usable chunks; refusing to wipe the table")
 
-        rows = [
-            (c["content"], c["source_url"], c["title"], c["category"], vector_literal(emb))
-            for c, emb in zip(batch, embeddings)
-        ]
-        cur.executemany(insert_query, rows)
-        conn.commit()
+    embeddings = embed([chunk["content"] for chunk in chunks])
+    if len(embeddings[0]) != EMBEDDING_DIM:
+        sys.exit(f"Embedding dimension {len(embeddings[0])} does not match schema ({EMBEDDING_DIM})")
 
-    cur.execute("SELECT COUNT(*) FROM chunks")
-    total = cur.fetchone()[0]
-    print(f"\nDone. {total} rows in chunks table.")
+    rows = [
+        (
+            chunk["content"],
+            chunk["source_url"],
+            chunk["title"],
+            chunk.get("category", "unknown"),
+            chunk.get("section"),
+            vector_literal(embedding),
+        )
+        for chunk, embedding in zip(chunks, embeddings)
+    ]
 
-    cur.close()
-    conn.close()
+    conn = psycopg2.connect(database_url, connect_timeout=15)
+    try:
+        with conn, conn.cursor() as cur:
+            cur.execute("TRUNCATE TABLE chunks RESTART IDENTITY")
+            execute_values(cur, INSERT_SQL, rows, template=INSERT_TEMPLATE, page_size=100)
+    finally:
+        conn.close()
+
+    print(f"Stored {len(rows)} chunks")
 
 
 if __name__ == "__main__":

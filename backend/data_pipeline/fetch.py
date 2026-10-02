@@ -1,98 +1,82 @@
-"""
-Step 2 of the pipeline: fetch raw content from verified sources.
-
-Downloads each source in sources.json into raw_docs/, named by a slug
-derived from its title. PDFs are saved as-is; HTML pages are saved as
-raw HTML (cleaning happens in the next pipeline step, not here).
-"""
-
-import json
-import re
-from pathlib import Path
-from urllib.parse import urlparse
+import argparse
+import sys
 
 import requests
 from tqdm import tqdm
 
-RAW_DOCS_DIR = Path("raw_docs")
+from common import RAW_DOCS_DIR, is_approved_url, is_placeholder, load_sources, safe_get, slugify
 
-APPROVED_DOMAINS = {
-    "india.gov.in", "www.india.gov.in",
-    "indiacode.nic.in", "www.indiacode.nic.in",
-    "cybercrime.gov.in", "www.cybercrime.gov.in",
-    "meity.gov.in", "www.meity.gov.in",
-    "cert-in.org.in", "www.cert-in.org.in",
-    "rbi.org.in", "www.rbi.org.in",
-    "mha.gov.in", "www.mha.gov.in",
-    "ncrb.gov.in", "www.ncrb.gov.in",
-    "services.india.gov.in",
-    "cag.gov.in", "www.cag.gov.in",
-    "police.py.gov.in",
-    "i4c.mha.gov.in",
-    "cyber.delhipolice.gov.in",
-}
-
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                  "(KHTML, like Gecko) Chrome/120.0 Safari/537.36"
-}
+MAX_BYTES = 50 * 1024 * 1024
+PDF_MAGIC = b"%PDF-"
 
 
-def slugify(title):
-    slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
-    return slug[:80]
+def download(url):
+    response = safe_get(url)
+    try:
+        response.raise_for_status()
+        content_type = response.headers.get("Content-Type", "").lower()
+        parts, size = [], 0
+        for part in response.iter_content(65536):
+            size += len(part)
+            if size > MAX_BYTES:
+                raise ValueError("file exceeds 50 MB limit")
+            parts.append(part)
+        return b"".join(parts), content_type
+    finally:
+        response.close()
 
 
-def load_sources(path="sources.json"):
-    with open(path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    return data["sources"]
+def fetch_one(entry, force):
+    url, title = entry["source_url"], entry["title"]
 
-
-def fetch_one(entry):
-    url = entry["source_url"]
-    title = entry["title"]
-
-    if url.startswith("TODO"):
+    if is_placeholder(url):
         print(f"[SKIP] {title}: placeholder URL")
-        return
-
-    domain = urlparse(url).netloc
-    if domain not in APPROVED_DOMAINS:
-        print(f"[REJECT] {title}: domain '{domain}' not approved -- refusing to fetch")
-        return
+        return "skip"
+    if not is_approved_url(url):
+        print(f"[FAIL] {title}: not https on an approved domain")
+        return "fail"
 
     slug = slugify(title)
-    is_pdf = url.lower().endswith(".pdf")
-    out_path = RAW_DOCS_DIR / f"{slug}.{'pdf' if is_pdf else 'html'}"
+    pdf_path = RAW_DOCS_DIR / f"{slug}.pdf"
+    html_path = RAW_DOCS_DIR / f"{slug}.html"
 
-    if out_path.exists():
-        print(f"[SKIP] {title}: already downloaded ({out_path.name})")
-        return
+    if not force and (pdf_path.exists() or html_path.exists()):
+        print(f"[SKIP] {title}: already downloaded")
+        return "skip"
 
     try:
-        resp = requests.get(url, headers=HEADERS, timeout=20)
-        resp.raise_for_status()
-    except requests.RequestException as e:
-        print(f"[FAIL] {title}: {e}")
-        return
+        data, content_type = download(url)
+    except (requests.RequestException, ValueError) as exc:
+        print(f"[FAIL] {title}: {exc}")
+        return "fail"
 
+    is_pdf = url.lower().endswith(".pdf") or "pdf" in content_type or data.startswith(PDF_MAGIC)
+    if is_pdf and not data.startswith(PDF_MAGIC):
+        print(f"[FAIL] {title}: expected a PDF but received something else")
+        return "fail"
+
+    out_path = pdf_path if is_pdf else html_path
     RAW_DOCS_DIR.mkdir(exist_ok=True)
-    mode = "wb" if is_pdf else "w"
-    content = resp.content if is_pdf else resp.text
-    encoding_kwarg = {} if is_pdf else {"encoding": "utf-8"}
+    temp_path = out_path.with_name(out_path.name + ".part")
+    temp_path.write_bytes(data)
+    temp_path.replace(out_path)
 
-    with open(out_path, mode, **encoding_kwarg) as f:
-        f.write(content)
-
-    print(f"[OK] {title}: saved to {out_path}")
+    print(f"[OK] {title}: {out_path.name} ({len(data) // 1024} KB)")
+    return "ok"
 
 
 def main():
-    sources = load_sources()
-    print(f"Fetching {len(sources)} source(s) into {RAW_DOCS_DIR}/\n")
-    for entry in tqdm(sources, desc="Fetching"):
-        fetch_one(entry)
+    parser = argparse.ArgumentParser(description="Download sources.json entries into raw_docs/")
+    parser.add_argument("--force", action="store_true", help="re-download existing files")
+    force = parser.parse_args().force
+
+    counts = {"ok": 0, "skip": 0, "fail": 0}
+    for entry in tqdm(load_sources(), desc="Fetching"):
+        counts[fetch_one(entry, force)] += 1
+
+    print(f"\nOK: {counts['ok']}  SKIP: {counts['skip']}  FAIL: {counts['fail']}")
+    if counts["fail"]:
+        sys.exit(1)
 
 
 if __name__ == "__main__":

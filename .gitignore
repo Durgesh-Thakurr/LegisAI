@@ -1,5 +1,12 @@
 venv/
 __pycache__/
-*.pyc 
-.env
+*.pyc
 
+.env
+.env.*
+!.env.example
+
+.vscode/
+.DS_Store
+Thumbs.db
+*.log 
