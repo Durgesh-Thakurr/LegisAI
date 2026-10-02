@@ -1,11 +1,11 @@
 {
   "_comment": "Only .gov.in / official-domain sources. Run verify_sources.py before ingesting.",
   "sources": [
-  {
-  "title": "Information Technology Act, 2000 (as amended by ITAA 2008, police.py.gov.in)",
-  "source_url": "https://police.py.gov.in/Information%20Technology%20Act%202000%20-%202008%20(amendment).pdf",
-  "category": "act"
-}, 
+    {
+      "title": "Information Technology Act, 2000 (as amended by ITAA 2008, police.py.gov.in)",
+      "source_url": "https://police.py.gov.in/Information%20Technology%20Act%202000%20-%202008%20(amendment).pdf",
+      "category": "act"
+    },
     {
       "title": "National Cyber Crime Reporting Portal -- Service Description (india.gov.in)",
       "source_url": "https://services.india.gov.in/service/detail/national-cyber-crime-reporting-portal",
@@ -27,7 +27,7 @@
       "title": "CERT-In Advisories (listing page, needs crawler)",
       "source_url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADVLIST",
       "category": "advisory",
-      "notes": "This is a listing page, not a single document. The fetcher will need to crawl linked advisory pages rather than treat this as one document."
+      "notes": "This is a listing page of technical vulnerability advisories, not victim-facing cybercrime guidance. Low priority for RAG -- kept for completeness."
     },
     {
       "title": "RBI -- Customer Protection: Limiting Liability in Unauthorised Electronic Banking Transactions",
@@ -35,10 +35,25 @@
       "category": "advisory",
       "notes": "Core RBI circular on liability/refund rules for unauthorised digital transactions (UPI/card fraud). Also check rbi.org.in Notifications section periodically for newer circulars."
     },
-{
-  "title": "Cyber Crime Categories & Definitions (cybercrime.gov.in official)",
-  "source_url": "https://cybercrime.gov.in/Webform/CrimeCatDes.aspx",
-  "category": "crime_type_explainer"
-}
+    {
+      "title": "Cyber Crime Categories & Definitions (cybercrime.gov.in official)",
+      "source_url": "https://cybercrime.gov.in/Webform/CrimeCatDes.aspx",
+      "category": "crime_type_explainer"
+    },
+    {
+      "title": "I4C Cybercrime Awareness Hub (mha.gov.in official)",
+      "source_url": "https://i4c.mha.gov.in/awareness.aspx",
+      "category": "prevention_tips"
+    },
+    {
+      "title": "Cyber Awareness Materials -- Financial, Job, Matrimonial Fraud (cybercrime.gov.in official)",
+      "source_url": "https://cybercrime.gov.in/Webform/CyberAware.aspx",
+      "category": "prevention_tips"
+    },
+    {
+      "title": "Sextortion Frauds -- Delhi Police Cyber Cell (official)",
+      "source_url": "https://cyber.delhipolice.gov.in/Sextortion.html",
+      "category": "crime_type_explainer"
+    }
   ]
 } 

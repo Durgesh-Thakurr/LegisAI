@@ -1,6 +1,13 @@
+"""
+Step 2 of the pipeline: fetch raw content from verified sources.
+
+Downloads each source in sources.json into raw_docs/, named by a slug
+derived from its title. PDFs are saved as-is; HTML pages are saved as
+raw HTML (cleaning happens in the next pipeline step, not here).
+"""
+
 import json
 import re
-import sys
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -19,8 +26,10 @@ APPROVED_DOMAINS = {
     "mha.gov.in", "www.mha.gov.in",
     "ncrb.gov.in", "www.ncrb.gov.in",
     "services.india.gov.in",
-    "cag.gov.in", "www.cag.gov.in", 
+    "cag.gov.in", "www.cag.gov.in",
     "police.py.gov.in",
+    "i4c.mha.gov.in",
+    "cyber.delhipolice.gov.in",
 }
 
 HEADERS = {
@@ -87,4 +96,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main() 

@@ -17,10 +17,12 @@ APPROVED_DOMAINS = {
     "cert-in.org.in", "www.cert-in.org.in",
     "rbi.org.in", "www.rbi.org.in",
     "mha.gov.in", "www.mha.gov.in",
-    "ncrb.gov.in", "www.ncrb.gov.in", 
-    "services.india.gov.in", 
+    "ncrb.gov.in", "www.ncrb.gov.in",
+    "services.india.gov.in",
     "cag.gov.in", "www.cag.gov.in",
     "police.py.gov.in",
+    "i4c.mha.gov.in",
+    "cyber.delhipolice.gov.in",
 }
 
 HEADERS = {
@@ -44,7 +46,7 @@ def check_source(entry):
 
     domain = urlparse(url).netloc
     if domain not in APPROVED_DOMAINS:
-        return "REJECT", f"{title}: domain '{domain}' not on approved list"
+        return "REJECT", f"{title}: domain '{domain}' not approved"
 
     try:
         resp = requests.head(url, timeout=15, allow_redirects=True, headers=HEADERS)
