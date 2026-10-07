@@ -8,6 +8,12 @@ from common import RAW_DOCS_DIR, is_approved_url, is_placeholder, load_sources, 
 
 MAX_BYTES = 50 * 1024 * 1024
 PDF_MAGIC = b"%PDF-"
+BLOCK_PAGE_MARKERS = ("testing whether you are a human visitor", "your support id is")
+
+
+def looks_blocked(data):
+    text = data[:20000].decode("utf-8", errors="ignore").lower()
+    return any(marker in text for marker in BLOCK_PAGE_MARKERS)
 
 
 def download(url):
@@ -53,6 +59,10 @@ def fetch_one(entry, force):
     is_pdf = url.lower().endswith(".pdf") or "pdf" in content_type or data.startswith(PDF_MAGIC)
     if is_pdf and not data.startswith(PDF_MAGIC):
         print(f"[FAIL] {title}: expected a PDF but received something else")
+        return "fail"
+
+    if not is_pdf and looks_blocked(data):
+        print(f"[FAIL] {title}: the site returned a bot-check page. Download it in a browser and save it as {html_path.name}")
         return "fail"
 
     out_path = pdf_path if is_pdf else html_path

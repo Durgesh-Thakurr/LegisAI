@@ -6,22 +6,28 @@ import pymupdf
 import spacy
 from bs4 import BeautifulSoup
 
-from common import CHUNKS_FILE, RAW_DOCS_DIR, is_placeholder, load_sources, slugify
+from common import CHUNKS_FILE, LEGAL_NOTES_FILE, RAW_DOCS_DIR, is_placeholder, load_sources, slugify
 
 MIN_WORDS = 200
 MAX_WORDS = 400
-OVERLAP_SENTENCES = 1
+OVERLAP_UNITS = 1
+OVERLAP_WORDS = 40
+MAX_OVERLAP_WORDS = 100
 MAX_SECTION_WORDS = 500
 MIN_SECTION_WORDS = 12
 MIN_SECTIONS_FOR_ACT = 5
 MAX_SECTION_GAP = 25
+MIN_SOURCE_WORDS = 150
 MIN_TOC_SECTIONS = 10
 
-SECTION_RE = re.compile(r'^[ \t]*(\d{1,3})([A-Z]{0,2})\.[ \t]+(?=[A-Z\u201c"(])', re.MULTILINE)
+SECTION_PATTERNS = (
+    re.compile(r'^[ \t]*(\d{1,3})([A-Z]{0,2})\.[ \t]+(?=[A-Z\u201c"(])', re.MULTILINE),
+    re.compile(r"^[ \t]*(\d{1,3})([A-Z]{0,2})[ \t]*\n[ \t]*(?=[A-Z])", re.MULTILINE),
+)
 FOOTNOTE_RE = re.compile(
     r"^[ \t]*\d{1,3}[A-Z]{0,2}\.[ \t]+(Subs\.|Ins\.|Added|Rep\.|Substituted|Inserted|Vide|Omitted by)"
 )
-STRIPPED_TAGS = ["script", "style", "nav", "footer", "header", "aside", "form", "noscript"]
+STRIPPED_TAGS = ["script", "style", "nav", "footer", "header", "aside", "noscript"]
 
 nlp = spacy.blank("en")
 nlp.add_pipe("sentencizer")
@@ -70,25 +76,50 @@ def split_sentences(text):
     return [sentence.text.strip() for sentence in document.sents if sentence.text.strip()]
 
 
+def split_words(text):
+    words = text.split()
+    windows, start = [], 0
+    while start < len(words):
+        windows.append(" ".join(words[start:start + MAX_WORDS]))
+        if start + MAX_WORDS >= len(words):
+            break
+        start += MAX_WORDS - OVERLAP_WORDS
+    return windows
+
+
+def split_units(text):
+    units = []
+    for line in text.split("\n"):
+        line = " ".join(line.split())
+        if not line:
+            continue
+        if word_count(line) <= MAX_WORDS:
+            units.append(line)
+            continue
+        for sentence in split_sentences(line):
+            units.extend(split_words(sentence) if word_count(sentence) > MAX_WORDS else [sentence])
+    return units
+
+
 def split_long(text):
     chunks, current, current_words = [], [], 0
-    for sentence in split_sentences(text):
-        words = word_count(sentence)
+    for unit in split_units(text):
+        words = word_count(unit)
         if current and current_words >= MIN_WORDS and current_words + words > MAX_WORDS:
-            chunks.append(" ".join(current))
-            current = current[len(current) - OVERLAP_SENTENCES:]
-            current_words = sum(word_count(s) for s in current)
-        current.append(sentence)
+            chunks.append("\n".join(current))
+            current = [u for u in current[len(current) - OVERLAP_UNITS:] if word_count(u) <= MAX_OVERLAP_WORDS]
+            current_words = sum(word_count(u) for u in current)
+        current.append(unit)
         current_words += words
     if current:
-        chunks.append(" ".join(current))
+        chunks.append("\n".join(current))
     return chunks
 
 
-def find_section_starts(text):
+def scan_sections(pattern, text):
     starts = []
     last_number, last_suffix = 0, ""
-    for match in SECTION_RE.finditer(text):
+    for match in pattern.finditer(text):
         line_end = text.find("\n", match.end())
         line = text[match.start(): line_end if line_end != -1 else len(text)]
         if FOOTNOTE_RE.match(line):
@@ -107,6 +138,10 @@ def find_section_starts(text):
     return starts
 
 
+def find_section_starts(text):
+    return max((scan_sections(pattern, text) for pattern in SECTION_PATTERNS), key=len)
+
+
 def build_chunk(content, meta, section=None):
     return {
         "content": content,
@@ -115,6 +150,10 @@ def build_chunk(content, meta, section=None):
         "category": meta.get("category", "unknown"),
         "section": section,
     }
+
+
+def status_suffix(meta):
+    return f"\n{meta['status_note']}" if meta.get("status_note") else ""
 
 
 def chunk_act(text, meta):
@@ -132,13 +171,14 @@ def chunk_act(text, meta):
         parts = [body] if word_count(body) <= MAX_SECTION_WORDS else split_long(body)
         for number, part in enumerate(parts, 1):
             part_label = f" (part {number}/{len(parts)})" if len(parts) > 1 else ""
-            header = f"{meta['title']} -- Section {section}{part_label}"
+            header = f"{meta['title']} -- Section {section}{part_label}{status_suffix(meta)}"
             chunks.append(build_chunk(f"{header}\n{part}", meta, section))
     return chunks
 
 
 def chunk_generic(text, meta):
-    return [build_chunk(f"{meta['title']}\n{part}", meta) for part in split_long(text)]
+    header = f"{meta['title']}{status_suffix(meta)}"
+    return [build_chunk(f"{header}\n{part}", meta) for part in split_long(text)]
 
 
 def chunk_source(meta, text):
@@ -148,6 +188,22 @@ def chunk_source(meta, text):
             return chunks
         print(f"[WARN] {meta['title']}: no section headings detected, using generic chunking")
     return chunk_generic(text, meta)
+
+
+def load_legal_notes():
+    if not LEGAL_NOTES_FILE.exists():
+        return []
+    notes = json.loads(LEGAL_NOTES_FILE.read_text(encoding="utf-8"))
+    return [
+        {
+            "content": f"{note['title']}\n{note['text']}",
+            "source_url": note["source_url"],
+            "title": note["title"],
+            "category": "legal_note",
+            "section": note["section"],
+        }
+        for note in notes
+    ]
 
 
 def drop_duplicates(chunks, seen):
@@ -172,11 +228,19 @@ def main():
             print(f"[SKIP] {meta['title']}: no raw file found")
             continue
 
-        chunks = drop_duplicates(chunk_source(meta, clean_text(raw_text)), seen)
+        cleaned = clean_text(raw_text)
+        if word_count(cleaned) < MIN_SOURCE_WORDS:
+            print(f"[WARN] {meta['title']}: only {word_count(cleaned)} words extracted; the page may be a block page or built by JavaScript")
+
+        chunks = drop_duplicates(chunk_source(meta, cleaned), seen)
         sections = len({c["section"] for c in chunks if c["section"]})
         detail = f", {sections} sections" if sections else ""
         print(f"[OK] {meta['title']}: {len(chunks)} chunks{detail}")
         all_chunks.extend(chunks)
+
+    legal_notes = load_legal_notes()
+    all_chunks.extend(legal_notes)
+    print(f"[OK] Legal status notes: {len(legal_notes)} chunks")
 
     with open(CHUNKS_FILE, "w", encoding="utf-8") as f:
         json.dump(all_chunks, f, ensure_ascii=False, indent=2)

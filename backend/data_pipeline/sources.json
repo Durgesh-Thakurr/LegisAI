@@ -21,7 +21,8 @@
       "title": "Digital Personal Data Protection Act, 2023 (meity.gov.in, official Gazette PDF)",
       "source_url": "https://www.meity.gov.in/static/uploads/2024/06/2bf1f0e9f04e6fb4f8fef35e82c42aa5.pdf",
       "category": "act",
-      "notes": "Phased commencement -- check meity.gov.in/content/digital-personal-data-protection-act-2023 for current commencement status before citing as fully in force."
+      "notes": "Phased commencement -- check meity.gov.in/content/digital-personal-data-protection-act-2023 for current commencement status before citing as fully in force.",
+      "status_note": "LEGAL STATUS NOTE (per MeitY commencement notification of 13 November 2025): the DPDP Act is being brought into force in phases. Sections 1(2), 2, 18-26, 35, 38-43, 44(1) and 44(3) are in force. Consent Manager provisions (section 6(9) and 27(1)(d)) follow after 12 months (November 2026). Most remaining provisions, including sections 3-17 (duties of Data Fiduciaries and rights of Data Principals) and 44(2), come into force 18 months after notification (May 2027). Do not state that these duties are currently enforceable."
     },
     {
       "title": "RBI -- Customer Protection: Limiting Liability in Unauthorised Electronic Banking Transactions",
@@ -48,6 +49,66 @@
       "title": "Sextortion Frauds -- Delhi Police Cyber Cell (official)",
       "source_url": "https://cyber.delhipolice.gov.in/Sextortion.html",
       "category": "crime_type_explainer"
+    },
+    {
+      "title": "MHA -- Cyber Frauds Helpline 1930 (Rajya Sabha reply, mha.gov.in)",
+      "source_url": "https://www.mha.gov.in/MHA1/Par2017/pdfs/par2022-pdfs/RS06042022/3908.pdf",
+      "category": "helpline"
+    },
+    {
+      "title": "NCRP User Manual -- Reporting Cyber Crime Complaints (cybercrime.gov.in, MHA/I4C)",
+      "source_url": "https://cybercrime.gov.in/uploadmedia/mha-citizenmanualreportothercybercrime-v10.pdf",
+      "category": "portal_manual",
+      "notes": "Official categories and sub-categories of cybercrime complaints, and the information needed to file each."
+    },
+    {
+      "title": "National Cyber Crime Reporting Portal FAQ (cybercrime.gov.in)",
+      "source_url": "https://cybercrime.gov.in/Webform/FAQ.aspx",
+      "category": "portal_faq"
+    },
+    {
+      "title": "MHA -- SOP for cyber financial fraud, NCRP and CFCFRMS (Rajya Sabha, 4 Feb 2026)",
+      "source_url": "https://www.mha.gov.in/MHA1/Par2017/pdfs/par2026-pdfs/RS04022026/553.pdf",
+      "category": "parliament_answer"
+    },
+    {
+      "title": "MHA -- Cyber frauds, digital arrest and awareness measures (Rajya Sabha, 11 Feb 2026)",
+      "source_url": "https://www.mha.gov.in/MHA1/Par2017/pdfs/par2026-pdfs/RS11022026/1349.pdf",
+      "category": "parliament_answer"
+    },
+    {
+      "title": "MHA -- Cyber awareness and cybercrime initiatives (Lok Sabha, 17 Mar 2026)",
+      "source_url": "https://www.mha.gov.in/MHA1/Par2017/pdfs/par2026-pdfs/LS17032026/4118.pdf",
+      "category": "parliament_answer"
+    },
+    {
+      "title": "NITI Aayog -- Digital Arrest: The Modern-Day Cyber Scam",
+      "source_url": "https://www.niti.gov.in/sites/default/files/2025-04/Digital_Arrest_The_Modern_Day_Cyber_Scam.pdf",
+      "category": "prevention_tips"
+    },
+    {
+      "title": "RBI -- BE(A)WARE: Booklet on Modus Operandi of Financial Frauds",
+      "source_url": "https://rbidocs.rbi.org.in/rdocs/content/pdfs/BEAWARE07032022.pdf",
+      "category": "prevention_tips",
+      "notes": "URL taken from a secondary listing of RBI's booklet. Run verify_sources.py; if it fails, find the current link on rbi.org.in."
+    },
+    {
+      "title": "Digital Personal Data Protection Rules, 2025 (meity.gov.in)",
+      "source_url": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
+      "category": "rules",
+      "status_note": "LEGAL STATUS NOTE (per MeitY commencement notification of 13 November 2025): the DPDP Act is being brought into force in phases. Sections 1(2), 2, 18-26, 35, 38-43, 44(1) and 44(3) are in force. Consent Manager provisions (section 6(9) and 27(1)(d)) follow after 12 months (November 2026). Most remaining provisions, including sections 3-17 (duties of Data Fiduciaries and rights of Data Principals) and 44(2), come into force 18 months after notification (May 2027). Do not state that these duties are currently enforceable."
+    },
+    {
+      "title": "PIB -- DPDP Rules, 2025 Notified: citizen-centric framework (pib.gov.in)",
+      "source_url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/nov/doc20251117695301.pdf",
+      "category": "explainer"
+    },
+    {
+      "title": "RBI -- Integrated Ombudsman Scheme, 2026 (scheme text, rbidocs.rbi.org.in)",
+      "source_url": "https://rbidocs.rbi.org.in/rdocs/content/pdfs/SCHEME16012026_A.pdf",
+      "category": "advisory",
+      "status_note": "LEGAL STATUS NOTE: The Reserve Bank - Integrated Ombudsman Scheme, 2026 came into force on 1 July 2026 and repealed the 2021 scheme. Complaints received before 1 July 2026 remain governed by the 2021 scheme. Complaints are lodged online on the RBI CMS portal (cms.rbi.org.in).",
+      "notes": "Scheme text linked from RBI press release 2025-2026/1936 (16 Jan 2026). If fetch.py gets a bot-check page, download the PDF in a browser and save it into raw_docs/ under the slug name."
     }
   ]
 } 

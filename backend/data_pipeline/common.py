@@ -9,6 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent
 RAW_DOCS_DIR = BASE_DIR / "raw_docs"
 SOURCES_FILE = BASE_DIR / "sources.json"
 CHUNKS_FILE = BASE_DIR / "chunks.json"
+LEGAL_NOTES_FILE = BASE_DIR / "legal_notes.json"
 
 APPROVED_DOMAINS = {
     "india.gov.in", "www.india.gov.in",
@@ -24,6 +25,9 @@ APPROVED_DOMAINS = {
     "police.py.gov.in",
     "i4c.mha.gov.in",
     "cyber.delhipolice.gov.in",
+    "rbidocs.rbi.org.in",
+    "niti.gov.in", "www.niti.gov.in",
+    "pib.gov.in", "www.pib.gov.in", "static.pib.gov.in",
 }
 
 REQUEST_HEADERS = {
@@ -69,4 +73,4 @@ def safe_get(url, timeout=(10, 30)):
         if not location:
             raise ValueError("redirect without Location header")
         url = urljoin(url, location)
-    raise ValueError("too many redirects") 
+    raise ValueError("too many redirects")

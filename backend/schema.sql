@@ -16,7 +16,13 @@ ALTER TABLE chunks ADD COLUMN IF NOT EXISTS section TEXT;
 CREATE INDEX IF NOT EXISTS chunks_embedding_hnsw
     ON chunks USING hnsw (embedding vector_cosine_ops);
 
+ALTER TABLE chunks ADD COLUMN IF NOT EXISTS content_tsv tsvector
+    GENERATED ALWAYS AS (to_tsvector('english', content)) STORED;
+
+CREATE INDEX IF NOT EXISTS chunks_content_tsv_gin
+    ON chunks USING gin (content_tsv);
+
 -- Read-only role for the API; use its connection string in backend/app/.env.
 -- CREATE ROLE legisai_reader LOGIN PASSWORD 'change-me';
 -- GRANT USAGE ON SCHEMA public TO legisai_reader;
--- GRANT SELECT ON chunks TO legisai_reader; 
+-- GRANT SELECT ON chunks TO legisai_reader;

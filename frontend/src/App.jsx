@@ -4,6 +4,13 @@ import { ApiError, MAX_MESSAGE_LENGTH, getSessionId, sendChat } from "./api";
 import Message from "./components/Message";
 
 const COUNTER_THRESHOLD = MAX_MESSAGE_LENGTH - 100;
+const STARTER_QUESTIONS = [
+  "I got scammed through OTP fraud. What should I do?",
+  "What is a digital arrest scam?",
+  "Section 66C kya hai?",
+  "BNS mein cheating ki saza kya hai?",
+  "How do I report a cybercrime online?",
+];
 
 export default function App() {
   const [sessionId] = useState(getSessionId);
@@ -18,9 +25,8 @@ export default function App() {
 
   const appendMessage = (message) => setMessages((previous) => [...previous, message]);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const text = input.trim();
+  const sendMessage = async (rawText) => {
+    const text = rawText.trim();
     if (!text || loading) return;
 
     appendMessage({ role: "user", text });
@@ -46,6 +52,11 @@ export default function App() {
     }
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    sendMessage(input);
+  };
+
   return (
     <div className="flex flex-col h-screen bg-slate-50">
       <header className="bg-slate-900 text-white px-6 py-4">
@@ -57,9 +68,22 @@ export default function App() {
 
       <main className="flex-1 overflow-y-auto px-4 py-6 space-y-4 max-w-2xl w-full mx-auto" aria-live="polite">
         {messages.length === 0 && (
-          <p className="text-slate-400 text-center mt-10">
-            Try asking: &quot;What should I do if I got scammed via OTP fraud?&quot;
-          </p>
+          <div className="mt-10 text-center">
+            <p className="text-slate-400">Try asking:</p>
+            <div className="mt-3 flex flex-wrap justify-center gap-2">
+              {STARTER_QUESTIONS.map((question) => (
+                <button
+                  key={question}
+                  type="button"
+                  onClick={() => sendMessage(question)}
+                  disabled={loading}
+                  className="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-100 disabled:opacity-50"
+                >
+                  {question}
+                </button>
+              ))}
+            </div>
+          </div>
         )}
         {messages.map((message, index) => (
           <Message key={index} message={message} />
@@ -104,4 +128,4 @@ export default function App() {
       </footer>
     </div>
   );
-} 
+}

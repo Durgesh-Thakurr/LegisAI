@@ -1,0 +1,347 @@
+[
+  {
+    "question": "i got scammed by otp what i have to do?",
+    "expect_any": [
+      "1930"
+    ]
+  },
+  {
+    "question": "UPI se paise kat gaye, sabse pehle kya karun?",
+    "expect_any": [
+      "1930"
+    ]
+  },
+  {
+    "question": "How do I file a cybercrime complaint online?",
+    "expect_any": [
+      "cybercrime.gov.in"
+    ]
+  },
+  {
+    "question": "Which categories can I choose when reporting on the cybercrime portal?",
+    "expect_any": [
+      "Online Financial Fraud"
+    ]
+  },
+  {
+    "question": "Can I report cybercrime if I am not an Indian citizen?",
+    "expect_any": [
+      "citizen"
+    ]
+  },
+  {
+    "question": "What information do I need to keep ready before filing a financial fraud complaint?",
+    "expect_any": [
+      "Transaction"
+    ]
+  },
+  {
+    "question": "section 66C kya hai?",
+    "expect_any": [
+      "identity theft"
+    ]
+  },
+  {
+    "question": "What is section 66D of the IT Act?",
+    "expect_any": [
+      "personation"
+    ]
+  },
+  {
+    "question": "Section 66E privacy violation punishment",
+    "expect_any": [
+      "privacy"
+    ]
+  },
+  {
+    "question": "What does section 66F say?",
+    "expect_any": [
+      "cyber terrorism"
+    ]
+  },
+  {
+    "question": "section 67 obscene material online",
+    "expect_any": [
+      "obscene"
+    ]
+  },
+  {
+    "question": "Section 43A data protection compensation",
+    "expect_any": [
+      "compensation"
+    ]
+  },
+  {
+    "question": "Is section 66A still valid?",
+    "expect_any": [
+      "Shreya Singhal"
+    ]
+  },
+  {
+    "question": "BNS mein cheating ki saza kya hai?",
+    "expect_any": [
+      "Section 318"
+    ]
+  },
+  {
+    "question": "cheating by personation under BNS",
+    "expect_any": [
+      "Section 319"
+    ]
+  },
+  {
+    "question": "extortion ki saza BNS dhara 308",
+    "expect_any": [
+      "Section 308"
+    ]
+  },
+  {
+    "question": "criminal intimidation kya hai BNS",
+    "expect_any": [
+      "Section 351"
+    ]
+  },
+  {
+    "question": "cyber stalking under Bharatiya Nyaya Sanhita",
+    "expect_any": [
+      "Section 78"
+    ]
+  },
+  {
+    "question": "voyeurism kaunsi dhara mein aata hai",
+    "expect_any": [
+      "Section 77"
+    ]
+  },
+  {
+    "question": "What is vishing?",
+    "expect_any": [
+      "vishing"
+    ]
+  },
+  {
+    "question": "smishing kya hota hai",
+    "expect_any": [
+      "smishing"
+    ]
+  },
+  {
+    "question": "SIM swap fraud kaise hota hai",
+    "expect_any": [
+      "SIM swap"
+    ]
+  },
+  {
+    "question": "What is phishing?",
+    "expect_any": [
+      "phishing"
+    ]
+  },
+  {
+    "question": "What is ransomware?",
+    "expect_any": [
+      "ransomware"
+    ]
+  },
+  {
+    "question": "cyber grooming meaning",
+    "expect_any": [
+      "grooming"
+    ]
+  },
+  {
+    "question": "What is cyber bullying?",
+    "expect_any": [
+      "bullying"
+    ]
+  },
+  {
+    "question": "website defacement kya hota hai",
+    "expect_any": [
+      "defacement"
+    ]
+  },
+  {
+    "question": "What is cryptojacking?",
+    "expect_any": [
+      "cryptojacking"
+    ]
+  },
+  {
+    "question": "What is pharming?",
+    "expect_any": [
+      "pharming"
+    ]
+  },
+  {
+    "question": "What is CSAM?",
+    "expect_any": [
+      "child sexual"
+    ]
+  },
+  {
+    "question": "sextortion kya hai aur kya karun",
+    "expect_any": [
+      "sextortion"
+    ]
+  },
+  {
+    "question": "online job fraud se kaise bache",
+    "expect_any": [
+      "job fraud"
+    ]
+  },
+  {
+    "question": "What is a digital arrest scam?",
+    "expect_any": [
+      "digital arrest"
+    ]
+  },
+  {
+    "question": "fake loan app scam kya hai",
+    "expect_any": [
+      "loan app"
+    ]
+  },
+  {
+    "question": "investment scam awareness",
+    "expect_any": [
+      "investment"
+    ]
+  },
+  {
+    "question": "QR code scan scam",
+    "expect_any": [
+      "QR"
+    ]
+  },
+  {
+    "question": "screen sharing app remote access fraud",
+    "expect_any": [
+      "screen sharing"
+    ]
+  },
+  {
+    "question": "money mule account kya hota hai",
+    "expect_any": [
+      "mule"
+    ]
+  },
+  {
+    "question": "fake social media profile impersonation",
+    "expect_any": [
+      "impersonat"
+    ]
+  },
+  {
+    "question": "bank ki liability unauthorised transaction 3 working days",
+    "expect_any": [
+      "working days"
+    ]
+  },
+  {
+    "question": "zero liability of customer in unauthorised transaction",
+    "expect_any": [
+      "zero liability"
+    ]
+  },
+  {
+    "question": "bank refund nahi de raha, kahan complaint karun",
+    "expect_any": [
+      "Ombudsman"
+    ]
+  },
+  {
+    "question": "DPDP Act kab se lagu hoga?",
+    "expect_any": [
+      "18 months",
+      "eighteen months"
+    ]
+  },
+  {
+    "question": "Are the DPDP Act duties on companies in force right now?",
+    "expect_any": [
+      "18 months",
+      "eighteen months"
+    ]
+  },
+  {
+    "question": "DPDP Rules 2025 kab notify hue",
+    "expect_any": [
+      "2025"
+    ]
+  },
+  {
+    "question": "vishing kya hota hai",
+    "expect_any": [
+      "vishing"
+    ]
+  },
+  {
+    "question": "phishing kya hai aur kaise bache",
+    "expect_any": [
+      "phishing"
+    ]
+  },
+  {
+    "question": "ransomware kya hota hai",
+    "expect_any": [
+      "ransomware"
+    ]
+  },
+  {
+    "question": "cryptojacking kya hai",
+    "expect_any": [
+      "cryptojacking"
+    ]
+  },
+  {
+    "question": "66A kya hai",
+    "expect_any": [
+      "Shreya Singhal"
+    ]
+  },
+  {
+    "question": "Can police arrest me under section 66A?",
+    "expect_any": [
+      "Shreya Singhal"
+    ]
+  },
+  {
+    "question": "sim swap hone par kya karun",
+    "expect_any": [
+      "SIM swap"
+    ]
+  },
+  {
+    "question": "mere account se paise kat gaye",
+    "expect_any": [
+      "1930"
+    ]
+  },
+  {
+    "question": "someone is blackmailing me with my photos",
+    "expect_any": [
+      "1930",
+      "sextortion"
+    ]
+  },
+  {
+    "question": "I was cheated in an online investment scheme, what now?",
+    "expect_any": [
+      "1930"
+    ]
+  },
+  {
+    "question": "RBI ombudsman kya hota hai",
+    "expect_any": [
+      "Ombudsman"
+    ]
+  },
+  {
+    "question": "Is the 2021 RBI Integrated Ombudsman Scheme still in force?",
+    "expect_any": [
+      "2026"
+    ]
+  }
+] 
