@@ -1,0 +1,184 @@
+[
+  {
+    "intent": "otp_victim",
+    "en": "I lost money in an OTP fraud, what should I do?",
+    "hinglish": "OTP fraud mein paise chale gaye, kya karun?",
+    "hi": "ओटीपी धोखाधड़ी में मेरे पैसे चले गए, मैं क्या करूं?",
+    "expect_any": [
+      "1930"
+    ]
+  },
+  {
+    "intent": "report_online",
+    "en": "How do I file a cybercrime complaint online?",
+    "hinglish": "online cybercrime complaint kaise karun?",
+    "hi": "ऑनलाइन साइबर अपराध की शिकायत कैसे दर्ज करूं?",
+    "expect_any": [
+      "cybercrime.gov.in"
+    ]
+  },
+  {
+    "intent": "s66c",
+    "en": "What is section 66C of the IT Act?",
+    "hinglish": "IT Act ki section 66C kya hai?",
+    "hi": "आईटी एक्ट की धारा 66C क्या है?",
+    "expect_any": [
+      "identity theft"
+    ]
+  },
+  {
+    "intent": "s66d",
+    "en": "What is section 66D of the IT Act?",
+    "hinglish": "section 66D kya hai?",
+    "hi": "आईटी एक्ट की धारा 66D क्या है?",
+    "expect_any": [
+      "personation"
+    ]
+  },
+  {
+    "intent": "s66a",
+    "en": "Is section 66A still valid?",
+    "hinglish": "kya section 66A abhi bhi valid hai?",
+    "hi": "क्या धारा 66A अभी भी वैध है?",
+    "expect_any": [
+      "Shreya Singhal"
+    ]
+  },
+  {
+    "intent": "bns_cheating",
+    "en": "What is the punishment for cheating under BNS?",
+    "hinglish": "BNS mein cheating ki saza kya hai?",
+    "hi": "भारतीय न्याय संहिता में धोखाधड़ी की सजा क्या है?",
+    "expect_any": [
+      "Section 318"
+    ]
+  },
+  {
+    "intent": "bns_extortion",
+    "en": "What is extortion under BNS section 308?",
+    "hinglish": "BNS dhara 308 extortion kya hai?",
+    "hi": "बीएनएस की धारा 308 में जबरन वसूली क्या है?",
+    "expect_any": [
+      "Section 308"
+    ]
+  },
+  {
+    "intent": "bns_stalking",
+    "en": "Which BNS section covers stalking?",
+    "hinglish": "stalking BNS ki kaunsi dhara mein aati hai?",
+    "hi": "पीछा करना (स्टॉकिंग) बीएनएस की किस धारा में आता है?",
+    "expect_any": [
+      "Section 78"
+    ]
+  },
+  {
+    "intent": "bns_voyeurism",
+    "en": "Which BNS section covers voyeurism?",
+    "hinglish": "voyeurism kaunsi dhara mein aata hai?",
+    "hi": "ताक-झांक (वॉयेरिज़्म) बीएनएस की किस धारा में आता है?",
+    "expect_any": [
+      "Section 77"
+    ]
+  },
+  {
+    "intent": "phishing",
+    "en": "What is phishing and how to avoid it?",
+    "hinglish": "phishing kya hai aur kaise bache?",
+    "hi": "फ़िशिंग क्या है और इससे कैसे बचें?",
+    "expect_any": [
+      "phishing"
+    ]
+  },
+  {
+    "intent": "smishing",
+    "en": "What is smishing?",
+    "hinglish": "smishing kya hota hai?",
+    "hi": "स्मिशिंग क्या होता है?",
+    "expect_any": [
+      "smishing"
+    ]
+  },
+  {
+    "intent": "vishing",
+    "en": "What is vishing?",
+    "hinglish": "vishing kya hota hai?",
+    "hi": "विशिंग क्या होता है?",
+    "expect_any": [
+      "vishing"
+    ]
+  },
+  {
+    "intent": "blackmail",
+    "en": "Someone is blackmailing me with my photos, what should I do?",
+    "hinglish": "koi meri photos se blackmail kar raha hai, kya karun?",
+    "hi": "कोई मेरी तस्वीरों से ब्लैकमेल कर रहा है, मैं क्या करूं?",
+    "expect_any": [
+      "1930",
+      "sextortion"
+    ]
+  },
+  {
+    "intent": "digital_arrest",
+    "en": "What is a digital arrest scam?",
+    "hinglish": "digital arrest scam kya hota hai?",
+    "hi": "डिजिटल अरेस्ट स्कैम क्या होता है?",
+    "expect_any": [
+      "digital arrest"
+    ]
+  },
+  {
+    "intent": "sim_swap",
+    "en": "What should I do after a SIM swap?",
+    "hinglish": "SIM swap hone par kya karun?",
+    "hi": "सिम स्वैप होने पर मैं क्या करूं?",
+    "expect_any": [
+      "SIM swap"
+    ]
+  },
+  {
+    "intent": "dpdp_status",
+    "en": "When will the DPDP Act duties come into force?",
+    "hinglish": "DPDP Act ki duties kab se lagu hongi?",
+    "hi": "डीपीडीपी अधिनियम के कर्तव्य कब से लागू होंगे?",
+    "expect_any": [
+      "18 months",
+      "eighteen months"
+    ]
+  },
+  {
+    "intent": "ombudsman_2021",
+    "en": "Is the 2021 RBI Integrated Ombudsman Scheme still in force?",
+    "hinglish": "kya 2021 wali RBI Integrated Ombudsman Scheme abhi lagu hai?",
+    "hi": "क्या 2021 की आरबीआई एकीकृत लोकपाल योजना अभी लागू है?",
+    "expect_any": [
+      "came into force on 1 July 2026"
+    ]
+  },
+  {
+    "intent": "zero_liability",
+    "en": "What is the zero liability of a customer in unauthorised transactions?",
+    "hinglish": "unauthorised transaction mein customer ki zero liability kya hai?",
+    "hi": "अनधिकृत लेन-देन में ग्राहक की शून्य देयता क्या है?",
+    "expect_any": [
+      "zero liability"
+    ]
+  },
+  {
+    "intent": "money_mule",
+    "en": "What is a money mule account?",
+    "hinglish": "money mule account kya hota hai?",
+    "hi": "मनी म्यूल अकाउंट क्या होता है?",
+    "expect_any": [
+      "mule"
+    ]
+  },
+  {
+    "intent": "qr_scam",
+    "en": "How does a QR code scan scam work?",
+    "hinglish": "QR code scan scam kaise hota hai?",
+    "hi": "क्यूआर कोड स्कैन घोटाला कैसे होता है?",
+    "expect_any": [
+      "QR"
+    ]
+  }
+] 

@@ -343,5 +343,37 @@
     "expect_any": [
       "2026"
     ]
+  },
+  {
+    "question": "What is the capital of France?",
+    "expect_none": true
+  },
+  {
+    "question": "Give me a recipe for chicken biryani",
+    "expect_none": true
+  },
+  {
+    "question": "Who won the 2011 cricket world cup?",
+    "expect_none": true
+  },
+  {
+    "question": "Write a python program to reverse a string",
+    "expect_none": true
+  },
+  {
+    "question": "What is the weather in Delhi today?",
+    "expect_none": true
+  },
+  {
+    "question": "Explain how a black hole forms",
+    "expect_none": true
+  },
+  {
+    "question": "mujhe ek funny joke sunao",
+    "expect_none": true
+  },
+  {
+    "question": "tell me about the stock market today",
+    "expect_none": true
   }
 ] 

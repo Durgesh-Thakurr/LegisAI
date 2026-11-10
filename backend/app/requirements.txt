@@ -3,6 +3,6 @@ uvicorn[standard]
 psycopg2-binary
 python-dotenv
 sentence-transformers
-google-generativeai
+google-genai
 groq
-slowapi 
+slowapi
