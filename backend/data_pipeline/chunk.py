@@ -16,13 +16,17 @@ MAX_OVERLAP_WORDS = 100
 MAX_SECTION_WORDS = 500
 MIN_SECTION_WORDS = 12
 MIN_SECTIONS_FOR_ACT = 5
-MAX_SECTION_GAP = 25
 MIN_SOURCE_WORDS = 150
-MIN_TOC_SECTIONS = 10
+MAX_HEADING_WEIGHT = 3000
 
-SECTION_PATTERNS = (
-    re.compile(r'^[ \t]*(\d{1,3})([A-Z]{0,2})\.[ \t]+(?=[A-Z\u201c"(])', re.MULTILINE),
-    re.compile(r"^[ \t]*(\d{1,3})([A-Z]{0,2})[ \t]*\n[ \t]*(?=[A-Z])", re.MULTILINE),
+# One pattern for every heading style seen in the official PDFs; group 2 or 3 holds the letter suffix:
+#   "66C. Identity theft"  "115.(1) Whoever"  "66 A. Title"  "66E. \nTitle"  "66 A \nTitle"  "66C\nTitle"  "66 B Title"
+SECTION_PATTERN = re.compile(
+    r'^[ \t]*(\d{1,3})(?:'
+    r'[ \t]?([A-Z]{0,2})(?:\.[ \t]*(?=[A-Z\u201c"(])|\.?[ \t]*\n[ \t]*(?=[A-Z]))'
+    r'|[ \t]([A-Z])[ \t]+(?=[A-Z][a-z])'
+    r')',
+    re.MULTILINE,
 )
 FOOTNOTE_RE = re.compile(
     r"^[ \t]*\d{1,3}[A-Z]{0,2}\.[ \t]+(Subs\.|Ins\.|Added|Rep\.|Substituted|Inserted|Vide|Omitted by)"
@@ -116,30 +120,43 @@ def split_long(text):
     return chunks
 
 
-def scan_sections(pattern, text):
-    starts = []
-    last_number, last_suffix = 0, ""
-    for match in pattern.finditer(text):
+def heading_candidates(text):
+    candidates = []
+    for match in SECTION_PATTERN.finditer(text):
         line_end = text.find("\n", match.end())
         line = text[match.start(): line_end if line_end != -1 else len(text)]
         if FOOTNOTE_RE.match(line):
             continue
-
-        number, suffix = int(match.group(1)), match.group(2)
-        follows_previous = (
-            (number == last_number and suffix > last_suffix)
-            or last_number < number <= last_number + MAX_SECTION_GAP
-        )
-        restarts_after_toc = number <= 2 and not suffix and last_number >= MIN_TOC_SECTIONS
-
-        if follows_previous or restarts_after_toc:
-            starts.append((match.start(), f"{number}{suffix}"))
-            last_number, last_suffix = number, suffix
-    return starts
+        suffix = match.group(2) or match.group(3) or ""
+        candidates.append((match.start(), (int(match.group(1)), suffix)))
+    return candidates
 
 
 def find_section_starts(text):
-    return max((scan_sections(pattern, text) for pattern in SECTION_PATTERNS), key=len)
+    """Pick the chain of headings with strictly increasing section numbers that covers the most text.
+
+    Table-of-contents entries and stray numbers inside a section (list items, cross references) are also
+    heading-shaped, but a chain through them covers little text or breaks the increasing order, so the
+    real headings win. Returns [(position, "66A"), ...] in document order, one entry per section.
+    """
+    candidates = heading_candidates(text)
+    if not candidates:
+        return []
+
+    positions = [position for position, _ in candidates] + [len(text)]
+    weights = [min(positions[i + 1] - positions[i], MAX_HEADING_WEIGHT) + 1 for i in range(len(candidates))]
+    best, previous = [0] * len(candidates), [-1] * len(candidates)
+    for i, (_, key) in enumerate(candidates):
+        best[i] = weights[i]
+        for j in range(i):
+            if candidates[j][1] < key and best[j] + weights[i] > best[i]:
+                best[i], previous[i] = best[j] + weights[i], j
+
+    index, chain = max(range(len(candidates)), key=best.__getitem__), []
+    while index != -1:
+        chain.append(index)
+        index = previous[index]
+    return [(candidates[i][0], f"{candidates[i][1][0]}{candidates[i][1][1]}") for i in reversed(chain)]
 
 
 def build_chunk(content, meta, section=None):
@@ -154,6 +171,11 @@ def build_chunk(content, meta, section=None):
 
 def status_suffix(meta):
     return f"\n{meta['status_note']}" if meta.get("status_note") else ""
+
+
+def section_note(meta, section):
+    note = (meta.get("section_notes") or {}).get(section)
+    return f"\n{note}" if note else ""
 
 
 def chunk_act(text, meta):
@@ -171,7 +193,7 @@ def chunk_act(text, meta):
         parts = [body] if word_count(body) <= MAX_SECTION_WORDS else split_long(body)
         for number, part in enumerate(parts, 1):
             part_label = f" (part {number}/{len(parts)})" if len(parts) > 1 else ""
-            header = f"{meta['title']} -- Section {section}{part_label}{status_suffix(meta)}"
+            header = f"{meta['title']} -- Section {section}{part_label}{status_suffix(meta)}{section_note(meta, section)}"
             chunks.append(build_chunk(f"{header}\n{part}", meta, section))
     return chunks
 

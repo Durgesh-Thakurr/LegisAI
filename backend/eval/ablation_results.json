@@ -1,0 +1,584 @@
+[
+  {
+    "intent": "otp_victim",
+    "expect_any": [
+      "1930"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": null,
+        "keyword@8": null,
+        "fused@8": null,
+        "fused+cap+budget": null,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": null,
+        "keyword@8": null,
+        "fused@8": null,
+        "fused+cap+budget": null,
+        "full": 1
+      },
+      "hi": {
+        "dense@8": null,
+        "keyword@8": null,
+        "fused@8": null,
+        "fused+cap+budget": null,
+        "full": 1
+      }
+    }
+  },
+  {
+    "intent": "report_online",
+    "expect_any": [
+      "cybercrime.gov.in"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hi": {
+        "dense@8": 1,
+        "keyword@8": null,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      }
+    }
+  },
+  {
+    "intent": "s66c",
+    "expect_any": [
+      "identity theft"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 4,
+        "keyword@8": null,
+        "fused@8": 8,
+        "fused+cap+budget": null,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": 8,
+        "keyword@8": null,
+        "fused@8": null,
+        "fused+cap+budget": null,
+        "full": 1
+      },
+      "hi": {
+        "dense@8": 5,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      }
+    }
+  },
+  {
+    "intent": "s66d",
+    "expect_any": [
+      "personation"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 7,
+        "keyword@8": null,
+        "fused@8": null,
+        "fused+cap+budget": null,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": null,
+        "keyword@8": 1,
+        "fused@8": 2,
+        "fused+cap+budget": 2,
+        "full": 1
+      },
+      "hi": {
+        "dense@8": 6,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      }
+    }
+  },
+  {
+    "intent": "s66a",
+    "expect_any": [
+      "Shreya Singhal"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 1,
+        "keyword@8": 2,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": 1,
+        "keyword@8": 2,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hi": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      }
+    }
+  },
+  {
+    "intent": "bns_cheating",
+    "expect_any": [
+      "Section 318"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 3,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hi": {
+        "dense@8": 2,
+        "keyword@8": null,
+        "fused@8": 2,
+        "fused+cap+budget": 2,
+        "full": 3
+      }
+    }
+  },
+  {
+    "intent": "bns_extortion",
+    "expect_any": [
+      "Section 308"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hi": {
+        "dense@8": 3,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      }
+    }
+  },
+  {
+    "intent": "bns_stalking",
+    "expect_any": [
+      "Section 78"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hi": {
+        "dense@8": 1,
+        "keyword@8": null,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      }
+    }
+  },
+  {
+    "intent": "bns_voyeurism",
+    "expect_any": [
+      "Section 77"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 1,
+        "keyword@8": 2,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": 1,
+        "keyword@8": null,
+        "fused@8": 2,
+        "fused+cap+budget": 2,
+        "full": 2
+      },
+      "hi": {
+        "dense@8": null,
+        "keyword@8": null,
+        "fused@8": null,
+        "fused+cap+budget": null,
+        "full": null
+      }
+    }
+  },
+  {
+    "intent": "phishing",
+    "expect_any": [
+      "phishing"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hi": {
+        "dense@8": 1,
+        "keyword@8": null,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      }
+    }
+  },
+  {
+    "intent": "smishing",
+    "expect_any": [
+      "smishing"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 2,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": 6,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hi": {
+        "dense@8": 3,
+        "keyword@8": null,
+        "fused@8": 3,
+        "fused+cap+budget": 3,
+        "full": 3
+      }
+    }
+  },
+  {
+    "intent": "vishing",
+    "expect_any": [
+      "vishing"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hi": {
+        "dense@8": 1,
+        "keyword@8": null,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      }
+    }
+  },
+  {
+    "intent": "blackmail",
+    "expect_any": [
+      "1930",
+      "sextortion"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": 1,
+        "keyword@8": null,
+        "fused@8": 3,
+        "fused+cap+budget": 3,
+        "full": 3
+      },
+      "hi": {
+        "dense@8": 2,
+        "keyword@8": null,
+        "fused@8": 2,
+        "fused+cap+budget": 2,
+        "full": 2
+      }
+    }
+  },
+  {
+    "intent": "digital_arrest",
+    "expect_any": [
+      "digital arrest"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 2
+      },
+      "hinglish": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 2
+      },
+      "hi": {
+        "dense@8": 1,
+        "keyword@8": null,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      }
+    }
+  },
+  {
+    "intent": "sim_swap",
+    "expect_any": [
+      "SIM swap"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hi": {
+        "dense@8": 1,
+        "keyword@8": null,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      }
+    }
+  },
+  {
+    "intent": "dpdp_status",
+    "expect_any": [
+      "18 months",
+      "eighteen months"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hi": {
+        "dense@8": 1,
+        "keyword@8": null,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      }
+    }
+  },
+  {
+    "intent": "ombudsman_2021",
+    "expect_any": [
+      "came into force on 1 July 2026"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hi": {
+        "dense@8": 1,
+        "keyword@8": 3,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      }
+    }
+  },
+  {
+    "intent": "zero_liability",
+    "expect_any": [
+      "zero liability"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hi": {
+        "dense@8": 1,
+        "keyword@8": null,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      }
+    }
+  },
+  {
+    "intent": "money_mule",
+    "expect_any": [
+      "mule"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hinglish": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      },
+      "hi": {
+        "dense@8": 1,
+        "keyword@8": null,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      }
+    }
+  },
+  {
+    "intent": "qr_scam",
+    "expect_any": [
+      "QR"
+    ],
+    "hits": {
+      "en": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 2
+      },
+      "hinglish": {
+        "dense@8": 1,
+        "keyword@8": 1,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 2
+      },
+      "hi": {
+        "dense@8": 1,
+        "keyword@8": null,
+        "fused@8": 1,
+        "fused+cap+budget": 1,
+        "full": 1
+      }
+    }
+  }
+]

@@ -4,7 +4,11 @@
     {
       "title": "Information Technology Act, 2000 (as amended by ITAA 2008, police.py.gov.in)",
       "source_url": "https://police.py.gov.in/Information%20Technology%20Act%202000%20-%202008%20(amendment).pdf",
-      "category": "act"
+      "category": "act",
+      "section_notes": {
+        "66A": "LEGAL STATUS NOTE: Section 66A of the Information Technology Act, 2000 (punishment for sending offensive messages through communication service) was struck down as unconstitutional by the Supreme Court of India in Shreya Singhal v. Union of India, (2015) 5 SCC 1, decided on 24 March 2015. Section 66A is not valid and not enforceable: no one can be prosecuted under it, and it must not be listed as a current cybercrime offence. Some older copies of the Act still print its text.",
+        "43A": "LEGAL STATUS NOTE: Section 43A of the Information Technology Act, 2000 (compensation for failure to protect data) remains in force until Section 44(2) of the Digital Personal Data Protection Act, 2023 commences. Under the MeitY commencement notification of 13 November 2025, Section 44(2) commences 18 months after notification, that is in May 2027."
+      }
     },
     {
       "title": "National Cyber Crime Reporting Portal -- Service Description (india.gov.in)",
