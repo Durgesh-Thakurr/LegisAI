@@ -14,11 +14,12 @@ function Sources({ sources }) {
   return (
     <div className="mt-3 pt-2 border-t border-slate-200 text-sm">
       <strong className="text-slate-500">Sources:</strong>
-      <ul className="mt-1 space-y-1">
+      <ul className="mt-1 space-y-2">
         {sources.map((source) => {
           const href = safeUrl(source.url);
+          const label = source.section ? `${source.title}, Section ${source.section}` : source.title;
           return (
-            <li key={source.url}>
+            <li key={`${source.url}#${source.section ?? ""}`}>
               {href ? (
                 <a
                   href={href}
@@ -26,10 +27,16 @@ function Sources({ sources }) {
                   rel="noreferrer noopener"
                   className="text-blue-600 hover:underline"
                 >
-                  {source.title}
+                  {label}
                 </a>
               ) : (
-                <span className="text-slate-600">{source.title}</span>
+                <span className="text-slate-600">{label}</span>
+              )}
+              {source.snippet && <p className="mt-0.5 text-xs text-slate-500">{source.snippet}</p>}
+              {source.note && (
+                <p className="mt-1 text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded px-2 py-1">
+                  {source.note}
+                </p>
               )}
             </li>
           );
