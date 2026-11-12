@@ -55,6 +55,7 @@ CANDIDATE_CHUNKS = 24
 MAX_CHUNKS_PER_SOURCE = 3
 MAX_SECTION_CHUNKS = 6
 SEMANTIC_CHUNKS_WITH_SECTION = 4
+SECTION_EXTRAS_MIN_SIMILARITY = 0.5
 MAX_SECTION_REFERENCES = 3
 LEXICAL_CHUNKS = 10
 MAX_LEXICAL_TERMS = 8
@@ -713,7 +714,8 @@ def find_relevant_chunks(message: str) -> tuple[list[dict], float]:
 
     exact = groups["section"]
     if exact:
-        selected = prepend_unique(exact, selected)[: len(exact) + SEMANTIC_CHUNKS_WITH_SECTION]
+        extras = [c for c in selected if c["similarity"] >= SECTION_EXTRAS_MIN_SIMILARITY]
+        selected = prepend_unique(exact, extras)[: len(exact) + SEMANTIC_CHUNKS_WITH_SECTION]
         top_similarity = 1.0
 
     if groups["helpline"]:
