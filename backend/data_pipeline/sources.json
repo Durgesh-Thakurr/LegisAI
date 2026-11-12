@@ -11,13 +11,8 @@
       }
     },
     {
-      "title": "National Cyber Crime Reporting Portal -- Service Description (india.gov.in)",
-      "source_url": "https://services.india.gov.in/service/detail/national-cyber-crime-reporting-portal",
-      "category": "portal_faq"
-    },
-    {
       "title": "Bharatiya Nyaya Sanhita, 2023 (ncrb.gov.in, official Bare Act PDF)",
-      "source_url": "https://www.ncrb.gov.in/uploads/SankalanPortal/DownloadPDF/BNS2023.pdf",
+      "source_url": "https://ncrb.mha.gov.in/uploads/SankalanPortal/DownloadPDF/BNS2023.pdf",
       "category": "act",
       "notes": "Cyber-relevant sections include 75, 77, 78, 79 (offences against women online), 111-112 (organised/cyber-enabled crime chains). Chunk with section boundaries preserved."
     },
@@ -57,7 +52,8 @@
     {
       "title": "MHA -- Cyber Frauds Helpline 1930 (Rajya Sabha reply, mha.gov.in)",
       "source_url": "https://www.mha.gov.in/MHA1/Par2017/pdfs/par2022-pdfs/RS06042022/3908.pdf",
-      "category": "helpline"
+      "category": "helpline",
+      "status_note": "DATA NOTE: the statistics in this reply (175494 complaints, 30.08.2019 to 30.03.2022) are as of 30 March 2022 and are outdated; later official documents report higher figures. The helpline number 1930 is also confirmed in the 2026 MHA replies. When figures from different documents differ, use the one with the latest 'as of' date and state that date."
     },
     {
       "title": "NCRP User Manual -- Reporting Cyber Crime Complaints (cybercrime.gov.in, MHA/I4C)",
@@ -73,22 +69,26 @@
     {
       "title": "MHA -- SOP for cyber financial fraud, NCRP and CFCFRMS (Rajya Sabha, 4 Feb 2026)",
       "source_url": "https://www.mha.gov.in/MHA1/Par2017/pdfs/par2026-pdfs/RS04022026/553.pdf",
-      "category": "parliament_answer"
+      "category": "parliament_answer",
+      "status_note": "DATA NOTE: CFCFRMS figures in this reply are as of 31 December 2025; NCRB 'Crime in India' figures cover 2021 to 2023. Other MHA replies in the sources give CFCFRMS figures as of other dates. When figures from different documents differ, use the one with the latest 'as of' date and state that date."
     },
     {
       "title": "MHA -- Cyber frauds, digital arrest and awareness measures (Rajya Sabha, 11 Feb 2026)",
       "source_url": "https://www.mha.gov.in/MHA1/Par2017/pdfs/par2026-pdfs/RS11022026/1349.pdf",
-      "category": "parliament_answer"
+      "category": "parliament_answer",
+      "status_note": "DATA NOTE: CFCFRMS figures in this reply are as of 31 December 2025; NCRB 'Crime in India' figures cover 2021 to 2023. Other MHA replies in the sources give CFCFRMS figures as of other dates. When figures from different documents differ, use the one with the latest 'as of' date and state that date."
     },
     {
       "title": "MHA -- Cyber awareness and cybercrime initiatives (Lok Sabha, 17 Mar 2026)",
       "source_url": "https://www.mha.gov.in/MHA1/Par2017/pdfs/par2026-pdfs/LS17032026/4118.pdf",
-      "category": "parliament_answer"
+      "category": "parliament_answer",
+      "status_note": "DATA NOTE: CFCFRMS figures in this reply are as of 31 January 2026; NCRB 'Crime in India' figures cover 2021 to 2023. Other MHA replies in the sources give CFCFRMS figures as of other dates. When figures from different documents differ, use the one with the latest 'as of' date and state that date."
     },
     {
       "title": "NITI Aayog -- Digital Arrest: The Modern-Day Cyber Scam",
       "source_url": "https://www.niti.gov.in/sites/default/files/2025-04/Digital_Arrest_The_Modern_Day_Cyber_Scam.pdf",
-      "category": "prevention_tips"
+      "category": "prevention_tips",
+      "status_note": "DATA NOTE: this article appeared in the February 2025 issue of a magazine (see the link in the PDF); its CFCFRMS figure (3431 crore rupees, 9.94 lakh complaints) is older than the figures in the 2026 MHA replies. When figures from different documents differ, use the one with the latest 'as of' date and state that date."
     },
     {
       "title": "RBI -- BE(A)WARE: Booklet on Modus Operandi of Financial Frauds",
@@ -105,7 +105,8 @@
     {
       "title": "PIB -- DPDP Rules, 2025 Notified: citizen-centric framework (pib.gov.in)",
       "source_url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/nov/doc20251117695301.pdf",
-      "category": "explainer"
+      "category": "explainer",
+      "status_note": "LEGAL STATUS NOTE (per MeitY commencement notification of 13 November 2025): the DPDP Act is being brought into force in phases. Sections 1(2), 2, 18-26, 35, 38-43, 44(1) and 44(3) are in force. Consent Manager provisions (section 6(9) and 27(1)(d)) follow after 12 months (November 2026). Most remaining provisions, including sections 3-17 (duties of Data Fiduciaries and rights of Data Principals) and 44(2), come into force 18 months after notification (May 2027). Do not state that these duties are currently enforceable."
     },
     {
       "title": "RBI -- Integrated Ombudsman Scheme, 2026 (scheme text, rbidocs.rbi.org.in)",
