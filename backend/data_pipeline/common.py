@@ -20,6 +20,7 @@ APPROVED_DOMAINS = {
     "rbi.org.in", "www.rbi.org.in",
     "mha.gov.in", "www.mha.gov.in",
     "ncrb.gov.in", "www.ncrb.gov.in",
+    "ncrb.mha.gov.in", "www.ncrb.mha.gov.in",
     "services.india.gov.in",
     "cag.gov.in", "www.cag.gov.in",
     "police.py.gov.in",
@@ -73,4 +74,4 @@ def safe_get(url, timeout=(10, 30)):
         if not location:
             raise ValueError("redirect without Location header")
         url = urljoin(url, location)
-    raise ValueError("too many redirects")
+    raise ValueError("too many redirects") 

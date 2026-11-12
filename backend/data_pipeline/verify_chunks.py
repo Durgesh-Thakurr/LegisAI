@@ -22,6 +22,14 @@ STATUS_CHECKS = (
     ("Information Technology Act", "66A", "struck down"),
     ("Information Technology Act", "43A", "44(2)"),
 )
+NOTE_CHECKS = (
+    ("PIB -- DPDP Rules", "LEGAL STATUS NOTE"),
+    ("MHA -- Cyber Frauds Helpline 1930", "DATA NOTE"),
+    ("MHA -- SOP for cyber financial fraud", "DATA NOTE"),
+    ("MHA -- Cyber frauds, digital arrest", "DATA NOTE"),
+    ("MHA -- Cyber awareness and cybercrime", "DATA NOTE"),
+    ("NITI Aayog -- Digital Arrest", "DATA NOTE"),
+)
 HEADER_PART = re.compile(r"\(part (\d+)/\d+\)")
 
 
@@ -62,6 +70,11 @@ def main(path):
         found = [c for c in chunks if c["title"].startswith(prefix) and c["section"] == section and c["category"] == "act"]
         if not found or not all(needle in c["content"] for c in found):
             failures.append(f"{prefix} section {section}: status note containing '{needle}' is missing")
+
+    for prefix, needle in NOTE_CHECKS:
+        own = [c for c in chunks if c["title"].startswith(prefix)]
+        if not own or not all(needle in c["content"] for c in own):
+            failures.append(f"{prefix}: every chunk must carry a '{needle}'")
 
     if failures:
         print("\nFAILED:")
